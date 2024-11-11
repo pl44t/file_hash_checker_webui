@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>File Integrity Checker</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+    .container {
+      margin-top: 50px;
+      display: flex;
+      flex-direction: row;
+    }
+    .form-control {
+      background-color: #2b2b2b;
+      color: #ffffff;
+      border: 1px solid #6c757d;
+    }
+    /* Hidden file input */
+    input[type="file"] {
+      display: none;
+    }
+    /* Button Styling */
+    .btn {
+      background-color: #6f42c1;
+      border-color: #6f42c1;
+      color: #ffffff;
+    }
+    .btn:hover {
+      background-color: #5a3eaf;
+      border-color: #5a3eaf;
+    }
+    /* Custom Choose File Button */
+    .btn-upload {
+      background-color: #28a745; /* Color for the "Choose File" button */
+      border-color: #28a745;
+      color: #ffffff;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn-upload:hover {
+      background-color: #218838;
+      border-color: #218838;
+    }
+    .hash-box {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #343a40;
+      border-radius: 5px;
+      display: inline-block;
+      white-space: nowrap;
+      width: auto;
+      height: auto; 
+    }
+    .hash-container {
+      width: 50%;
+      margin-right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hash-container">
+      <h1 class="text-center mb-4">File Integrity Checker</h1>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="alert alert-info" role="alert">
+            {{ messages[0] }}
+          </div>
+        {% endif %}
+      {% endwith %}
+      <form method="post" enctype="multipart/form-data" action="/check">
+        <div class="form-group">
+          <label for="fileInput" class="btn btn-block btn-upload">Choose File</label>
+          <input type="file" name="file" id="fileInput" required>
+        </div>
+        <button type="submit" class="btn btn-block">Check File</button>
+      </form>
+
+      {% if calculated_hashes %}
+        <div class="hash-box">
+          <h5>MD5 Hash:</h5>
+          <p>{{ calculated_hashes.md5 }}</p>
+        </div>
+        <div class="hash-box">
+          <h5>SHA-1 Hash:</h5>
+          <p>{{ calculated_hashes.sha1 }}</p>
+        </div>
+        <div class="hash-box">
+          <h5>SHA-256 Hash:</h5>
+          <p>{{ calculated_hashes.sha256 }}</p>
+        </div>
+        <div class="hash-box">
+          <h5>SHA-512 Hash:</h5>
+          <p>{{ calculated_hashes.sha512 }}</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
