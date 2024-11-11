@@ -53,3 +53,6 @@ Replace  ```5004``` with the port number you prefer.
 
 ## Contributions
 Contributions are welcome! Please open an issue or submit a pull request with your enhancements.
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
