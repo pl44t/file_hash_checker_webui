@@ -18,16 +18,16 @@ This is a simple web application that allows users to upload any file and check 
 1. **Clone this repository:**
 
 ```
-   git clone https://github.com/yourusername/file-hash-checker-webui.git
-   cd file-hash-checker-webui
+git clone https://github.com/yourusername/file-hash-checker-webui.git
+cd file-hash-checker-webui
 ```
 2. **Install required packages:**
 ```
-    pip install Flask
+pip install Flask
 ```
 3. **Run the application:**
- ```
-    python app.py
+```
+python app.py
 ```
 
 4. **Access the application:** Open a browser and navigate to http://localhost:5004 (or replace localhost with your server IP if hosting remotely).
